@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* <HowItWorksSection /> */}
           {/* <Testimonials /> */}
           {/* <Pricing /> */}
-          <NewsLetterSection />
+          {/* <NewsLetterSection /> */}
           <Footer />
           <div className="purple_backdrop"></div>
         </div>
