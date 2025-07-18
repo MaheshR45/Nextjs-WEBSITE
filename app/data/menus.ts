@@ -34,52 +34,41 @@ export const menusList: Menus[] = [
     submenus: [],
   },
   {
-    menu: "Solutions",
+    menu: "Services",
     hasSubmenus: true,
     link: "#",
     submenus: [
       {
-        menu: "3D Catalog",
+        menu: "Employee Transportaion",
         link: `/catalog${filePath}`,
       },
       {
-        menu: "Augmented Reality",
+        menu: "Pick up and Drop",
         link: `/augmented-reality${filePath}`,
       },
       {
-        menu: "Virtual Reality",
+        menu: "Car/Bus Rental",
         link: `/virtual-reality${filePath}`,
       },
-      {
-        menu: "Metaverse",
-        link: `/metaverse${filePath}`,
-      },
-      {
-        menu: "Vision Systems",
-        link: `/vision-systems${filePath}`,
-      },
-      {
-        menu: "AI Agents",
-        link: `/ai-agents${filePath}`,
-      },
+      
     ],
   },
-  {
-    menu: "Industries",
-    link: `/industries${filePath}`,
-    submenus: [],
-  },
+  // {
+  //   menu: "Industries",
+  //   link: `/industries${filePath}`,
+  //   submenus: [],
+  // },
   {
     menu: "Contact Us",
     link: `/contact${filePath}`,
     submenus: [],
   },
-  {
-    menu: "GET STARTED",
-    link: `/contact${filePath}`,
-    isBtn: true,
-    submenus: [],
-  },
+  // {
+  //   menu: "GET STARTED",
+  //   link: `/contact${filePath}`,
+  //   isBtn: true,
+  //   submenus: [],
+  // },
 ];
 
 interface Story {

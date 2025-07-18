@@ -1,228 +1,228 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import BreadCrumbSection from "../components/BreadCrumb";
-import { basePath } from "@/base-config";
+import { useState } from 'react';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-    term: false,
-  });
+    const [formData, setFormData] = useState({
+        name: '',
+        surname: '',
+        email: '',
+        phoneNumber: '',
+        message: '',
+    });
+    const [agree, setAgree] = useState(false);
+    const [status, setStatus] = useState('');
 
-  // Handle input changes
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value, type } = e.target;
-    const inputValue =
-      type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: inputValue
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form Submitted:", formData);
-    // Optional: call an API or show success message
-  };
-
-  return (
-    <>
-      {/* BredCrumb-Section */}
-      <BreadCrumbSection
-        link="/contact"
-        menu="Contact us"
-        caption={
-          "If you have an query, please get in touch with us, we will revert back quickly."
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!agree) {
+            setStatus('You must agree to the terms.');
+            return;
         }
-      />
 
-      {/* Contact Us Section Start */}
-      <section className="contact_page_section pb-5">
-        <div className="container">
-          <div className="contact_inner">
-            <div className="contact_form">
-              <div className="section_title">
-                <h2>
-                  Leave a <span>message</span>
-                </h2>
-                <p>Fill up form below, our team will get back soon</p>
-              </div>
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <input
-                    name="name"
-                    type="text"
-                    placeholder="Name"
-                    className="form-control"
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    className="form-control"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                {/* <div className="form-group">
-                                    <input name="companyName" type="text" placeholder="Company Name" className="form-control" />
-                                </div> */}
-                {/* <div className="form-group">
-                                    <select name="country" className="form-control">
-                                        <option value="">Country</option>
-                                    </select>
-                                </div> */}
-                <div className="form-group">
-                  <input
-                    name="phone"
-                    type="text"
-                    placeholder="Phone"
-                    className="form-control"
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    name="subject"
-                    type="text"
-                    placeholder="Subject"
-                    className="form-control"
-                    value={formData.subject}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <textarea
-                    name="message"
-                    className="form-control"
-                    placeholder="Your message"
-                    value={formData.message}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-                <div className="form-group term_check">
-                  <input
-                    name="term"
-                    type="checkbox"
-                    id="term"
-                    checked={formData.term}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor="term">
-                    I agree to receive emails, newsletters and promotional
-                    messages
-                  </label>
-                </div>
-                <div className="form-group mb-0">
-                  <button type="submit" className="btn puprple_btn">
-                    SEND MESSAGE
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="contact_info">
-              <div className="icon">
-                <img
-                  src={`${basePath}/libs/images/contact_message_icon.png`}
-                  alt="image"
-                />
-              </div>
-              <div className="section_title">
-                <h2>
-                  Ready to Build the <span>Next-Gen Experience?</span>
-                </h2>
-                <p className="sub-title">
-                  <span>Book a Live Demo</span> and see how SmyData turns bold
-                  ideas into business results - usually in less than 30 days.
-                </p>
-                <p>
-                  <em>
-                    Prefer to talk first? Call us at +1 214-(884)-5649 or open
-                    the chat bubble anytime.
-                  </em>
-                </p>
-              </div>
-              {/* <a href="#" className="btn puprple_btn">
-                READ FAQ
-              </a> */}
-              <ul className="contact_info_list">
-                <li>
-                  <div className="img">
-                    <img
-                      src={`${basePath}/libs/images/mail_icon.png`}
-                      alt="image"
-                    />
-                  </div>
-                  <div className="text">
-                    <span>Email Us</span>
-                    <a href="mailto:info@smydata.com">info@smydata.com</a>
-                  </div>
-                </li>
-                <li>
-                  <div className="img">
-                    <img
-                      src={`${basePath}/libs/images/call_icon.png`}
-                      alt="image"
-                    />
-                  </div>
-                  <div className="text">
-                    <span>Call Us</span>
-                    <a href="tel:+1(214)884-5649">+1 214-(884)-5649</a>
-                  </div>
-                </li>
-                <li>
-                  <div className="img">
-                    <img
-                      src={`${basePath}/libs/images/location_icon.png`}
-                      alt="image"
-                    />
-                  </div>
-                  <div className="text">
-                    <span>Visit Us</span>
-                    <p>
-                      17350 State Hwy 249, Ste 220 <br />
-                      #10108 Houston, Texas 77064
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Contact Us Section End */}
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...formData }),
+            });
 
-      {/* Map Section Start */}
-      {/* <section className="row_am map_section">
-        <div className="container">
-          <div className="map_inner">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3128.2006751735803!2d-95.54422552499298!3d29.957170822701503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640cde743f206f5%3A0x4b612eeae1405e14!2s17350%20TX-249%20%23220%2C%20Houston%2C%20TX%2077064%2C%20USA!5e1!3m2!1sen!2sin!4v1750095687314!5m2!1sen!2sin"
-              width="100%"
-              height="510"
-              style={{ border: 0 }}
-              allowFullScreen={true}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
-      </section> */}
-      {/* Map Section End */}
-    </>
-  );
+            const result = await res.json();
+
+            if (res.ok) {
+                setStatus('Message sent successfully!');
+                setFormData({ name: '', surname: '', email: '', phoneNumber: '', message: '' });
+                setAgree(false);
+
+                // Show Bootstrap modal
+                const modal = new (window as any).bootstrap.Modal(document.getElementById('modalSuccess'));
+                modal.show();
+            } else {
+                setStatus(`Failed: ${result.error || 'Something went wrong.'}`);
+            }
+        } catch (error) {
+            setStatus('Error sending message.');
+        }
+    };
+
+    return (
+        <>
+            <div className="page-frame bg-pale-primary">
+                <div className="content-wrapper">
+                    <section className="wrapper bg-gray">
+                        <div className="container py-4 py-md-16">
+                            <div className="row">
+                                {/* Left column: Form */}
+                                <div className="col-lg-8">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="row gx-4">
+                                            <div className="col-md-6 mb-3">
+                                                <input
+                                                    type="text"
+                                                    name="name"
+                                                    placeholder="First Name"
+                                                    value={formData.name}
+                                                    onChange={handleChange}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="col-md-6 mb-3">
+                                                <input
+                                                    type="text"
+                                                    name="surname"
+                                                    placeholder="Last Name"
+                                                    value={formData.surname}
+                                                    onChange={handleChange}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="col-md-6 mb-3">
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    placeholder="Email"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="col-md-6 mb-3">
+                                                <input
+                                                    type="text"
+                                                    name="phoneNumber"
+                                                    placeholder="Phone Number"
+                                                    value={formData.phoneNumber}
+                                                    onChange={handleChange}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="col-12 mb-3">
+                                                <textarea
+                                                    name="message"
+                                                    placeholder="Your message"
+                                                    value={formData.message}
+                                                    onChange={handleChange}
+                                                    className="form-control"
+                                                    style={{ height: 150 }}
+                                                    required
+                                                ></textarea>
+                                            </div>
+                                            <div className="col-12 mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={agree}
+                                                    onChange={() => setAgree(!agree)}
+                                                    className="form-check-input"
+                                                    id="agreeCheck"
+                                                />
+                                                <label className="form-check-label" htmlFor="agreeCheck">
+                                                    I agree to terms and policy
+                                                </label>
+                                            </div>
+                                            <div className="col-12 mb-3">
+                                                <button type="submit" className="btn btn-primary rounded-pill">
+                                                    Send Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                        {status && <p className="mt-3 text-info">{status}</p>}
+                                    </form>
+                                </div>
+
+                                {/* Right column: Contact Info */}
+                                <div className="col-lg-4">
+                                    <div className="d-flex flex-row mb-4">
+                                        <div className="icon text-primary fs-28 me-4 mt-n1">
+                                            <i className="uil uil-location-pin-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h5 className="mb-1">Address</h5>
+                                            <address>
+                                                Moonshine St. 14/05 Light City, London, United Kingdom
+                                            </address>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex flex-row mb-4">
+                                        <div className="icon text-primary fs-28 me-4 mt-n1">
+                                            <i className="uil uil-phone-volume"></i>
+                                        </div>
+                                        <div>
+                                            <h5 className="mb-1">Phone</h5>
+                                            <p>
+                                                00 (123) 456 78 90 <br />
+                                                00 (987) 654 32 10
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex flex-row">
+                                        <div className="icon text-primary fs-28 me-4 mt-n1">
+                                            <i className="uil uil-envelope"></i>
+                                        </div>
+                                        <div>
+                                            <h5 className="mb-1">E-mail</h5>
+                                            <p className="mb-0">
+                                                <a href="mailto:sandbox@email.com" className="text-body">
+                                                    sandbox@email.com
+                                                </a>
+                                            </p>
+                                            <p>
+                                                <a href="mailto:help@sandbox.com" className="text-body">
+                                                    help@sandbox.com
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div
+                className="modal fade modal-bottom-center"
+                id="modalSuccess"
+                tabIndex={-1}
+                aria-hidden="true"
+            >
+                <div className="modal-dialog modal-xl">
+                    <div className="modal-content">
+                        <div className="modal-body p-6">
+                            <div className="row">
+                                <div className="col-md-12 col-lg-8 mb-4 mb-lg-0 my-auto align-items-center">
+                                    <h4 className="mb-2">Message Sent!</h4>
+                                    <p className="mb-0">
+                                        Your contact form has been submitted successfully. We'll get back to you soon.
+                                    </p>
+                                </div>
+                                <div className="col-md-5 col-lg-4 text-lg-end my-auto">
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary rounded-pill"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    >
+                                        I Understand
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+
 }
