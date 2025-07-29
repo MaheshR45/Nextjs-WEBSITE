@@ -22,7 +22,7 @@ export default function HeaderSection() {
         <div className=" bg-pale-primary">
             <div className="content-wrapper">
                 <header className="wrapper">
-                    <nav className="navbar navbar-expand-lg classic  ">
+                    <nav className="navbar navbar-expand-lg classic  transparent position-absolute navbar-dark  ">
                         <div className="container flex-lg-row flex-nowrap align-items-center">
                             {/* Logo */}
                             <div className="navbar-brand w-100">
@@ -112,6 +112,11 @@ export default function HeaderSection() {
                                     <li className="nav-item d-none d-md-block">
                                         <Link href="/contact" className="btn btn-sm btn-primary rounded-pill">
                                             Contact
+                                        </Link>
+                                    </li>
+                                      <li className="nav-item d-none d-md-block">
+                                        <Link href="/signin" className="btn btn-sm btn-primary rounded-pill">
+                                           Sign in
                                         </Link>
                                     </li>
                                     <li className="nav-item d-lg-none">

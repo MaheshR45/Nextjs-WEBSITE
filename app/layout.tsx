@@ -1,21 +1,13 @@
+
 import { basePath } from "@/base-config";
-
-import HeaderSection from "./components/Header";
-import Footer from "./components/Footer";
 import Script from "next/script";
-// import MainScripts from "./components/MainScripts";
-// import NewsLetterSection from "./components/NewsLetterSection";
+import LayoutWrapper from "./components/LayoutWrapper";
 
-// import HeaderSection from './components/Header';
-// import TrustedSection from './components/TrustedSection';
-// import MainScripts from './components/MainScripts';
-// import AboutSection from './components/AboutSection';
-// import ModernUiSection from './components/ModernUiSection';
-// import HowItWorksSection from './components/HowItWorks';
-// import Testimonials from './components/Testimonials';
-// import Pricing from './components/Pricing';
+
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
 
 
 
@@ -56,29 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       </head>
       <body>
-        <div className="page_wrapper">
-
-          {/* Preloader */}
-          <div id="preloader">
-            <div id="loader"></div>
-          </div>
-          <HeaderSection />
-          {children}
-          {/* <TrustedSection /> */}
-          {/* <AboutSection /> */}
-          {/* <ModernUiSection /> */}
-          {/* <HowItWorksSection /> */}
-          {/* <Testimonials /> */}
-          {/* <Pricing /> */}
-          {/* <NewsLetterSection /> */}
-          <Footer />
-          {/* <div className="purple_backdrop"></div> */}
-        </div>
-
-        {/* runs all the jQuery/AOS/Owl‐init code on mount */}
-        {/* <MainScripts /> */}
-
-
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
 
 
